@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     libboost-system-dev \
     libboost-serialization-dev \
     picard-tools \
-    libbamtools-dev && \
+    libbamtools-dev \
+    bwa  && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /opt
@@ -22,4 +23,5 @@ WORKDIR /opt/HLA-LA/src
 RUN git checkout tags/v1.0.4 && \
     make all BAMTOOLS_PATH=/usr BOOST_PATH=/usr && \
     ../bin/HLA-LA --action testBinary
+COPY paths.ini /opt/HLA-LA/src/paths.ini
 ENV PATH="/opt/HLA-LA/bin:/opt/HLA-LA/src:${PATH}"

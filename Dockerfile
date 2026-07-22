@@ -31,5 +31,6 @@ RUN curl --fail-early -OL http://www.well.ox.ac.uk/downloads/PRG_MHC_GRCh38_with
     rm PRG_MHC_GRCh38_withIMGT.tar.gz
 WORKDIR /opt/HLA-LA/src
 RUN echo "picard_sam2fastq_bin=/usr/share/java/picard.jar\nsamtools_bin=/usr/bin/samtools\nbwa_bin=/usr/bin/bwa\nnucmer_bin=\ndnadiff_bin=\nminimap2_bin=\nworkingDir=$HLA-LA-DIR/../working/\nworkingDir_HLA_ASM=$HLA-LA-DIR/output_HLA_ASM/" > paths.ini
+RUN ../bin/HLA-LA --action prepareGraph --PRG_graph_dir ../graphs/PRG_MHC_GRCh38_withIMGT
 
 ENV PATH="/opt/HLA-LA/bin:/opt/HLA-LA/src:${PATH}"
